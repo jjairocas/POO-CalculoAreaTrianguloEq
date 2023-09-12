@@ -27,6 +27,7 @@ public class AppTriangulo extends JFrame{
                 double lado,altura,area,perimetro;
                 txtLado.getText();
                 lado=Double.parseDouble(txtLado.getText());
+                lado=Math.abs(lado);
 
                 MedidasTriangulo Triangulo=new MedidasTriangulo(lado);
 

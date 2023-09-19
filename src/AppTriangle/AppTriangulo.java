@@ -24,23 +24,39 @@ public class AppTriangulo extends JFrame{
         btncalcular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double lado,altura,area,perimetro;
-                txtLado.getText();
-                lado=Double.parseDouble(txtLado.getText());
-                lado=Math.abs(lado);
+                double lado=0,altura,area,perimetro;
 
-                MedidasTriangulo Triangulo=new MedidasTriangulo(lado);
+                try{
+                    lado=Double.parseDouble(txtLado.getText());
+                    lado=Math.abs(lado);
+                }
+                catch (NumberFormatException exception){
+                    JOptionPane.showMessageDialog(null,
+                            "DEBES INGRESAR LA MEDIDA DE LA ALTURA EN NUMEROS",
+                            "INGRESA SOLO NUMEROS",
+                            JOptionPane.WARNING_MESSAGE);
+                }
 
-                txtAltura.setText(String.valueOf(Triangulo.CalcularAltura()));
-                txtArea.setText(String.valueOf(Triangulo.CalcularArea()));
-                txtPerimetro.setText(String.valueOf(Triangulo.CalcularPerimetro()));
+                if((lado == 0)){
+                    txtLado.setText("");
+                    txtAltura.setText("");
+                    txtArea.setText("");
+                    txtPerimetro.setText("");
+                }
+                else{
+                    MedidasTriangulo Triangulo=new MedidasTriangulo(lado);
+
+                    txtAltura.setText(String.valueOf(Triangulo.CalcularAltura()));
+                    txtArea.setText(String.valueOf(Triangulo.CalcularArea()));
+                    txtPerimetro.setText(String.valueOf(Triangulo.CalcularPerimetro()));
+
+                }
 
                 /*Calculo de las operaciones sin utilizar la Clase
                 Medidas de un Triangulo
                 altura=(lado*Math.sqrt(3))/2;
                 area=((Math.pow(lado,2))*(Math.sqrt(3))/4);
                 perimetro=lado*3;*/
-
 
             }
         });
